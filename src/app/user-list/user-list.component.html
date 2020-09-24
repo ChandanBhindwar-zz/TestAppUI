@@ -1,0 +1,53 @@
+<div class="row" *ngIf="isClick">
+    <div class="col-12">
+        <div>
+            <form [formGroup]="emailForm" (ngSubmit)="emailFormSubmit()">
+                <h3>Email Form</h3>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input formControlName="email" type="email" class="form-control" placeholder="Enter email" id="email">
+                </div>
+                <button type="submit" [disabled]="!emailForm.valid" class="btn btn-primary">Submit</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="row">
+    <div class="col-12">
+        <div>
+            <h2>User List</h2>
+            <p>The .table-striped class adds zebra-stripes to a table:</p>
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Pone No</th>
+                        <th>Date of Birth</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users">
+                        <td>{{user.name}}</td>
+                        <td>
+                            <ul>
+                                <li> {{user.email}}</li>
+                                <li *ngFor="let userEmail of user.userEmails">
+                                    {{userEmail.email}}
+                                </li>
+                            </ul>
+                            <button class="btn btn-success" (click)=addEmail(user.id)>Add Email</button>
+                        </td>
+                        <td>{{user.phone}}</td>
+                        <td>{{user.dateOfBirth | date}}</td>
+                        <td>{{user.image}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
